@@ -1,0 +1,24 @@
+###############
+## 
+####
+
+GPU: [0]
+
+VERBOSE: True
+
+Datasets:
+  data: 'potsdam'
+
+# Optimization arguments.
+OPTIM:
+  BATCH_SIZE: 2
+  NUM_EPOCHS: 50
+  LR_INITIAL: 2e-5
+  LR_MIN: 1e-6
+  BETA1: 0.9
+
+TRAINING:
+  VAL_AFTER_EVERY: 10
+  RESUME: False
+  TRAIN_DIR: './dataset/train/potsdam'       # path to training data
+  SAVE_DIR: './checkpoints'           # path to save models
