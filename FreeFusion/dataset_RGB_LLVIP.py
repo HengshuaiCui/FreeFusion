@@ -121,7 +121,7 @@ class DataLoaderTrain(Dataset):
         return tar_ir_img, inp_ir_img, tar_rgb_img, inp_rgb_img, filename
 
 class DataLoaderTest(Dataset):
-    def __init__(self, inp_dir, img_options):
+    def __init__(self, inp_dir):
         super(DataLoaderTest, self).__init__()
         inp_ir_files = sorted(os.listdir(os.path.join(inp_dir, 'ir')))
         inp_rgb_files = sorted(os.listdir(os.path.join(inp_dir, 'rgb')))
@@ -132,7 +132,7 @@ class DataLoaderTest(Dataset):
         self.inp_ir_size = len(self.inp_ir_filenames)
         self.inp_rgb_size = len(self.inp_rgb_filenames)
 
-        self.img_options = img_options
+
 
     def __len__(self):
         return self.inp_ir_size

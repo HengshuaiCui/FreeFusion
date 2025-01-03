@@ -7,7 +7,7 @@ GPU: [0]
 VERBOSE: True
 
 Datasets:
-  data: 'potsdam'
+  data: 'whu'
 
 # Optimization arguments.
 OPTIM:
@@ -20,5 +20,6 @@ OPTIM:
 TRAINING:
   VAL_AFTER_EVERY: 10
   RESUME: False
-  TRAIN_DIR: './dataset/train/potsdam'       # path to training data
+  TRAIN_DIR: './dataset/train/mfnet'       # path to training data
   SAVE_DIR: './checkpoints'           # path to save models
+  NUM_CLASSES: 9         #6 8 9

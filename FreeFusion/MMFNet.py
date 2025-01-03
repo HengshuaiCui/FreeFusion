@@ -518,8 +518,10 @@ class MMFNet(nn.Module):
         recon_dec_rgb = self.decoder(dec_rgb)
         # -----------seg stage------------------------------#
         seg_res = self.seghead(query_seg)
-        fus = self.decoder(query_fus)
-        return recon_ir, recon_rgb, recon_dec_ir, recon_dec_rgb, seg_res, fus
-
+        #-----------training use the following code-----#
+        return recon_ir, recon_rgb, recon_dec_ir, recon_dec_rgb, seg_res
+        #-----------testing use the following code-----#
+        # fus = self.decoder(query_fus)
+        # return _, _, _, _, _, fus
 
 

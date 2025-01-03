@@ -14,12 +14,11 @@ from torch.utils.data import DataLoader
 import random
 import time
 import utils
-from data_RGB_potsdam import get_training_data, get_test_data
+from data_RGB_mfnet import get_training_data
 from MMFNet import MMFNet
 from warmup_scheduler import GradualWarmupScheduler
 from tqdm import tqdm
 import torch.utils.data
-from sklearn.metrics import confusion_matrix
 from utils.seg_util import *
 from utils.dice import *
 import warnings
@@ -42,18 +41,12 @@ if __name__ == '__main__':
 
     start_epoch = 0
     data = opt.Datasets.data
-
-    result_dir = os.path.join(opt.TRAINING.SAVE_DIR, data, 'results')
     model_dir = os.path.join(opt.TRAINING.SAVE_DIR, data, 'models')
-
-    utils.mkdir(result_dir)
     utils.mkdir(model_dir)
-
     train_dir = opt.TRAINING.TRAIN_DIR
-    val_dir = opt.TRAINING.VAL_DIR
 
     ######### Model ###########
-    model = MMFNet()
+    model = MMFNet(opt.TRAINING.NUM_CLASSES)
     model.cuda()
 
     device_ids = [i for i in range(torch.cuda.device_count())]
@@ -94,10 +87,6 @@ if __name__ == '__main__':
     train_dataset = get_training_data(train_dir)
     train_loader = DataLoader(dataset=train_dataset, batch_size=opt.OPTIM.BATCH_SIZE, shuffle=True, num_workers=16,
                               drop_last=True, pin_memory=True)#drop_last=False
-
-    val_dataset = get_test_data(val_dir)
-    val_loader = DataLoader(dataset=val_dataset, batch_size=opt.OPTIM.BATCH_SIZE, shuffle=False, num_workers=8, drop_last=True,
-                            pin_memory=True)
 
     print('===> Start Epoch {} End Epoch {}'.format(start_epoch, opt.OPTIM.NUM_EPOCHS + 1))
     print('===> Loading datasets')

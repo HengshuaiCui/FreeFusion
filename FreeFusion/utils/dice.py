@@ -5,8 +5,7 @@ import torch.nn.functional as F
 from torch import Tensor
 from torch.nn.modules.loss import _Loss
 import numpy as np
-
-from functional import soft_dice_score
+from utils.functional import soft_dice_score
 
 __all__ = ["DiceLoss"]
 
