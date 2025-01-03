@@ -10,7 +10,7 @@ def is_image_file(filename):
     return any(filename.endswith(extension) for extension in ['jpeg', 'JPEG', 'jpg', 'png', 'JPG','bmp', 'PNG', 'gif'])
 
 class DataLoaderTrain(Dataset):
-    def __init__(self, img_dir, img_options=None):
+    def __init__(self, img_dir):
         super(DataLoaderTrain, self).__init__()
 
         inp_ir_files = sorted(os.listdir(os.path.join(img_dir, 'ir', 'input')))
@@ -24,17 +24,14 @@ class DataLoaderTrain(Dataset):
         self.tar_rgb_filenames = [os.path.join(img_dir, 'rgb', 'target', x) for x in tar_rgb_files if is_image_file(x)]
         # self.tar_seg_filenames = [os.path.join(img_dir, 'seg', x) for x in tar_seg_files if is_image_file(x)]
 
-        self.img_options = img_options
         self.sizex       = len(self.tar_ir_filenames)  # get the size of target
 
-        self.ps = self.img_options['patch_size']
 
     def __len__(self):
         return self.sizex
 
     def __getitem__(self, index):
         index_ = index % self.sizex
-        ps = self.ps
 
         inp_ir_path = self.inp_ir_filenames[index_]
         tar_ir_path = self.tar_ir_filenames[index_]
@@ -64,7 +61,7 @@ class DataLoaderTrain(Dataset):
         return tar_ir_img, inp_ir_img, tar_rgb_img, inp_rgb_img, filename
 
 class DataLoaderTest(Dataset):
-    def __init__(self, inp_dir, img_options):
+    def __init__(self, inp_dir):
         super(DataLoaderTest, self).__init__()
         inp_ir_files = sorted(os.listdir(os.path.join(inp_dir, 'ir')))
         inp_rgb_files = sorted(os.listdir(os.path.join(inp_dir, 'rgb')))
@@ -75,7 +72,6 @@ class DataLoaderTest(Dataset):
         self.inp_ir_size = len(self.inp_ir_filenames)
         self.inp_rgb_size = len(self.inp_rgb_filenames)
 
-        self.img_options = img_options
 
     def __len__(self):
         return self.inp_ir_size

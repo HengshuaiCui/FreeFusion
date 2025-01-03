@@ -37,7 +37,7 @@ class Config(object):
         self._C.TRAINING.SAVE_IMAGES = False
         self._C.TRAINING.TRAIN_DIR = 'images_dir/train'
         self._C.TRAINING.SAVE_DIR = 'checkpoints'
-
+        self._C.TRAINING.NUM_CLASSES = 6
         # Override parameter values from YAML file first, then from override list.
         self._C.merge_from_file(config_yaml)
         self._C.merge_from_list(config_override)
