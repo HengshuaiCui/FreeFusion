@@ -11,9 +11,7 @@
 
 ### 2. Data Preparation
 
-Thanks to the Potsdam, WHU, MFNet, LLVIP and M3FD datasets contributors. You can download [Potsdam](https://www.isprs.org/education/benchmarks/UrbanSemLab/default.aspx), [WHU](https://github.com/AmberHen/WHU-OPT-SAR-dataset), [MFNet](https://www.mi.t.u-tokyo.ac.jp/static/projects/mil_multispectral/), [LLVIP](https://github.com/bupt-ai-cz/LLVIP?tab=readme-ov-file) and [M3FD](https://github.com/JinyuanLiu-CV/TarDAL) to prepare **your dataset**.
-
-To generate the experiment results as described in our paper, you can refer to our division and cropping scheme for these datasets. Download at [[Baidu Yun](https://pan.baidu.com/s/117ckQSjeN5UQ5qUDSQ2PfQ?pwd=IVIF)]. **Note that**, if you want to train and test the Potsdam, WHU and MFNet datasets, you need to run `crop.py` to crop them. LLVIP and M3FD datasets are tested directly, without cropping.
+Thanks to the Potsdam, WHU, MFNet, LLVIP and M3FD datasets contributors. To generate the experiment results as described in our paper, you can download Potsdam, WHU, MFNet, LLVIP and M3FD datasets at [[Baidu Yun](https://pan.baidu.com/s/117ckQSjeN5UQ5qUDSQ2PfQ?pwd=IVIF)].  **Note that**, if you want to train and test the Potsdam, WHU and MFNet datasets, you need to run `crop.py` to crop them. LLVIP and M3FD datasets are tested directly, without cropping.
 
 ### 3. Training
 
@@ -64,9 +62,13 @@ Then, please run the following prompt:
 
 ```python
 python test_potsdam.py
+```
 
+```python
 python test_whu.py
+```
 
+```python
 python test_mfnet.py
 ```
 
@@ -76,8 +78,8 @@ Then, please run the following prompt:
 
 ```python
 python test_LLVIP.py
-
-python test_M3FD.py
 ```
 
-# 
+```python
+python test_M3FD.py
+```
